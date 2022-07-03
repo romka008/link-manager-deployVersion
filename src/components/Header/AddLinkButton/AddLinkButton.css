@@ -1,0 +1,9 @@
+.MuiButton-root {
+    width: 300px;
+}
+
+@media (max-width: 1030px) {
+    .MuiButton-root {
+        width: 200px;
+    }
+}

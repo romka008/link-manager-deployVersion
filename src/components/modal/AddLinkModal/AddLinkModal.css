@@ -1,0 +1,11 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-between;
+  padding-top: 10px;
+  gap: 20px;
+}
+.MuiDialogContent-root {
+  height: 480px;
+}

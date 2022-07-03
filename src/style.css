@@ -1,0 +1,12 @@
+/*добавить обнуляющие стили*/
+body {
+  padding: 10px;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  display: flex;
+  flex-direction: row;
+}

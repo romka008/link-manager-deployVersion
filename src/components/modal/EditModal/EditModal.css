@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-between;
+  padding-top: 10px;
+  gap: 20px;
+}
+
+.MuiDialog-paperWidthSm {
+  width: 450px;
+  min-height: 400px;
+}
+
+.MuiDialogTitle-root {
+  border-bottom: 1px solid #0000002b;
+  padding: 16px 24px;
+  z-index: 998;
+}
