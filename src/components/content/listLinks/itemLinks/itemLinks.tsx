@@ -4,11 +4,11 @@ import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import './itemLinks.css'
 import {allLinks, deleteLink, deletePermanentlyLink, filterLinks, saveRemoteLinks} from '../../../../store/listLinksReducer'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {EditLinkButton} from './EditLinkButton/EditLinkButton'
 import {ColorModeContext} from '../../../Theme/Theme'
-import { ILink} from '../../../../types/types'
-import { useAppSelector } from '../../../../store/hooks'
+import {ILink} from '../../../../types/types'
+import {useAppDispatch, useAppSelector} from '../../../../store/hooks'
 
 export interface IItemLinks {
     link: ILink
@@ -16,15 +16,15 @@ export interface IItemLinks {
 
 const ItemLinks: FC<IItemLinks> = ({link}) => {
     const mode = React.useContext(ColorModeContext)
-    const currentGroup = useAppSelector(state=> state.listGroups.currentGroup)
-    const dispatch = useDispatch()
-    const onRemoveLink = (id: number|null) => {
+    const currentGroup = useAppSelector((state) => state.listGroups.currentGroup)
+    const dispatch = useAppDispatch()
+    const onRemoveLink = (id: number | null) => {
         if (currentGroup === 'Корзина') {
             dispatch(deletePermanentlyLink(id))
         } else if (currentGroup === 'Все закладки') {
             dispatch(saveRemoteLinks(link))
             dispatch(deleteLink(id))
-            // dispatch(allLinks(link)) Нужен для того чтобы обновлялось отображение элементов при удалении, когда мы находимся в разделе "Все закладки"
+            dispatch(allLinks()) // Нужен для того чтобы обновлялось отображение элементов при удалении, когда мы находимся в разделе "Все закладки"
         } else if (currentGroup === link.currentGroup) {
             dispatch(saveRemoteLinks(link))
             dispatch(deleteLink(id))
@@ -41,7 +41,7 @@ const ItemLinks: FC<IItemLinks> = ({link}) => {
                 sx={{minWidth: 275, marginBottom: '10px', borderColor: '#512da8', backgroundColor: mode ? '#2d333b' : '#e6e8e8'}}>
                 <CardContent sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <div>
-                        <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom >
+                        <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
                             {link.nameLink}
                         </Typography>
 
